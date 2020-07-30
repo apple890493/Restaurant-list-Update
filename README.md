@@ -17,6 +17,8 @@
   `cd resturant_list`
 - 下載package
   `npm install`
+- 啟動mongoose
+  `npm run seed`
 - 透過nodemon啟動專案
   `npm run dev`
 - 最後在terminal可以看到 It's listening on localhost : 3000
