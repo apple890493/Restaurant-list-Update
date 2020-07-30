@@ -1,21 +1,20 @@
-<h1 class="mb-1 text-align restaurant-show-title">編輯餐廳 <i class="fas fa-pencil-alt"></i></h1>
-<div class="container" id="table">
+<h1 class="mb-1 text-align restaurant-show-title">建立新餐廳 <i class="far fa-clipboard"></i></h1>
+<div class="container">
   <div class="row">
     <div class="col-12 col-md-10 col-xl-8 mx-auto">
-      <form action="/restaurants/{{restaurant._id}}?_method=PUT" method="POST">
+      <form action="/restaurants" method="POST">
 
         <div class="form-group form-row">
           <label for="name" class="col-md-2 col-form-label">餐廳名稱:</label>
           <div class="col-md-10">
-            <input type="text" name="name" class="form-control mb-1" id="name" placeholder="Name"
-              value="{{restaurant.name}}" required>
+            <input type="text" name="name" class="form-control mb-1" id="name" placeholder="Name" required>
           </div>
         </div>
 
         <div class="form-group form-row">
           <label for="category" class="col-md-2 col-form-label">餐廳類別:</label>
           <div class="col-md-10">
-            <input type="text" name="category" list="categoryType" placeholder="{{restaurant.category}}" required>
+            <input type="text" name="category" list="categoryType" placeholder="EX:美式" required>
             <datalist id="categoryType">
               <option value="美式">美式</option>
               <option value="日本料理">日本料理</option>
@@ -28,30 +27,26 @@
           </div>
         </div>
 
-
         <div class="form-group row">
           <label for="location" class="col-md-2 col-form-label">餐廳地址：</label>
           <div class="col-md-10">
-            <input type="text" class="form-control mb-1" id="location" name="location" placeholder="Address"
-              value="{{restaurant.location}}" required>
-            <input type="text" class="form-control" id="google_map" name="google_map" placeholder="https://goo.gl/maps/"
-              value="{{restaurant.google_map}}">
+            <input type="text" class="form-control mb-1" id="location" name="location" placeholder="Address" required>
+            <input type="text" class="form-control" id="google_map" name="google_map"
+              placeholder="https://goo.gl/maps/">
           </div>
         </div>
 
         <div class="form-group row">
           <label for="phone" class="col-md-2 col-form-label">餐廳電話：</label>
           <div class="col-md-10">
-            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone"
-              value="{{restaurant.phone}}" required>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" required>
           </div>
         </div>
 
         <div class="form-group row">
           <label for="image" class="col-sm-2 col-form-label">餐廳圖片：</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="image" name="image" placeholder="http://"
-              value="{{restaurant.image}}">
+            <input type="text" class="form-control" id="image" name="image" placeholder="http://">
           </div>
         </div>
 
@@ -59,22 +54,24 @@
           <label for="description" class="col-sm-2 col-form-label">餐廳簡介：</label>
           <div class="col-sm-10">
             <textarea class="form-control" id="description" name="description" rows="3" placeholder="填寫評論..."
-              required>{{restaurant.description}}</textarea>
+              required></textarea>
           </div>
         </div>
 
         <div class="form-group row">
           <label for="rating" class="col-md-2 col-form-label">餐廳評價：</label>
           <div class="col-md-10 d-flex align-items-center">
-            <div class="form-check form-check-inline">
+            <div class="form-check form-check-inline ">
               <input type="number" class="form-control" id="rating" name="rating" min="0.1" max="5.0" step="0.1"
-                placeholder="EX:4.2" value="{{restaurant.rating}}" required>
+                placeholder="EX:4.2" required>
             </div>
           </div>
         </div>
-        <div class="form-group row justify-content-end">
-          <button type="submit" class="btn btn-info mb-3 mr-2" id="saveBtn">Save</button>
-          <a href="/"><button type="button" class="btn btn-dark">Back</button></a>
+        <div class="d-flex justify-content-end mb-3">
+          <button type="submit" class="btn btn-info mr-2">Create</button>
+          <a href="/">
+            <button type="button" class="btn btn-dark">Back</button>
+          </a>
         </div>
       </form>
     </div>
