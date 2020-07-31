@@ -5,7 +5,7 @@ const Restaurant = require('../../models/info')
 
 router.get('/', (req, res) => {
   const sortBy = req.query.by
-  const x = '1'
+  let x = '1'
   if (sortBy === 'name2') {
     x = '-1'
   }
