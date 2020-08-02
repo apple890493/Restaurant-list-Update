@@ -4,19 +4,9 @@ const restaurantData = require('../../restaurant.json').results
 const db = require('../../config/mongoose')
 
 db.once('open', () => {
-  restaurantData.forEach(data => {
-    Restaurant.create({
-      name: `${data.name}`,
-      name_en: `${data.name_en}`,
-      category: `${data.category}`,
-      image: `${data.image}`,
-      location: `${data.location}`,
-      phone: `${data.phone}`,
-      google_map: `${data.google_map}`,
-      rating: `${data.rating}`,
-      description: `${data.description}`,
-    })
-  })
-  console.log('done!')
+  console.log('mongodb connected!')
+  for (i = 1; i <= restaurantList.results.length; i++) {
+    Restaurant.create(restaurantList.results[i])
+  }
+  console.log('Restaurant create done')
 })
-
