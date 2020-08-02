@@ -11,7 +11,7 @@ router.get('/search', (req, res) => {
     .lean()
     .then(restaurant => {
       if (restaurant.length !== 0)
-        res.render('index', { restaurant: restaurant })
+        res.render('index', { restaurant, keyword })
       else res.render('no', { keyword: keyword })
     })
     .catch(error => console.log(error))
@@ -49,17 +49,7 @@ router.post('/', (req, res) => {
     data.image
   }
 
-  const restaurant = new Restaurant({
-    name: `${data.name}`,
-    name_en: `${data.name_en}`,
-    category: `${data.category}`,
-    location: `${data.location}`,
-    phone: `${data.phone}`,
-    google_map: `${data.google_map}`,
-    rating: `${data.rating}`,
-    description: `${data.description}`,
-    image: `${data.image}`,
-  })
+  const restaurant = new Restaurant(data)
   return restaurant.save()
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
@@ -71,33 +61,12 @@ router.put('/:id', (req, res) => {
   const newEdit = req.body
   Restaurant.findById(storeId)
     .then(restaurant => {
-      for (let i in newEdit) {
-        if (restaurant[i]) {
-          restaurant[i] = newEdit[i]
-          console.log(restaurant[i]) //test
-        }
-      }
+      restaurant = Object.assign(restaurant, newEdit)
       restaurant.save()
     })
     .then(() => res.redirect(`/restaurants/${storeId}/edit`))
     .catch(error => res.redirect(`/restaurants/${storeId}/edit`))
 })
-
-// app.put('/restaurants/:id', (req, res) => {
-//   const storeId = req.params.id
-//   const item = req.body
-//   Restaurant.findById(storeId)
-//     .then(restaurant => {
-//       for (let i in restaurant) {
-//         if (item[i] && typeof item[i] !== "function") {
-//           restaurant[i] = item[i]
-//         }
-//         restaurant.save()
-//       }
-//     })
-//     .then(() => res.redirect(`/restaurants/${storeId}/edit`), { dataError })
-//     .catch(error => res.redirect(`/restaurants/${storeId}/edit`))
-// })
 
 router.delete('/:id', (req, res) => {
   const storeId = req.params.id
@@ -108,3 +77,4 @@ router.delete('/:id', (req, res) => {
 })
 
 module.exports = router
+
